@@ -1,7 +1,7 @@
 # Require:
 https://github.com/roflmuffin/CounterStrikeSharp
 
-[https://github.com/roflmuffin/CounterStrikeSharp](https://github.com/schwarper/cs2-store)
+https://github.com/schwarper/cs2-store
 
 
 # Information
