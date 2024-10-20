@@ -1,0 +1,29 @@
+{
+  "Prefix": "{red}[RPS] {default}",
+  "NoCredits": "You don't have enough credits to {red}duel{default}!",
+  "NoCreditsAcc": "You don't have enough credits to {red}accept the duel{default}!",
+  "MinBet": "Minimum duel bet: {green}{0}",
+  "MaxBet": "Maximum duel bet: {red}{0}",
+
+  "Cooldown": "Wait {red}{0}{default} seconds before dueling someone else.",
+  "DuelMessage": "You have been dueled by {0} to {orange}RockPaperScissors{default} for {1} credits, use !duelaccept to or !duelrefuse",
+  "DuelSendMessage": "You sent a duel {0} to {orange}RockPaperScissors{default} for {1} credits",
+
+  "DuelAcceptMessage": "Your duel have been {green}accepted{default}! Choose between: {orange}Rock {silver}|| {orange}Paper {silver}|| {orange}Scissors",
+  "NoPlayer": "Could not find player with this name!",
+
+  "NoDuel": "You don't have any pending duels!",
+  "DuelRefused": "Your duel was {red}refused{default} by {lime}{0}",
+  "DuelRefuse": "You refused {0}'s duel",
+
+  "Tie": "Tie! Both players have recieved their credits back.",
+  "Win": "{blue}{0} choose {orange}{1}, {orange}{2} choose {red}{3}. {blue}{4} {green}Won!",
+
+  "InvalidCredits": "Invalid amount of credits!",
+  "ChallangeTimeOut": "Duel request expired. Initiate a new duel if you wish. ",
+  "menu<title>": "",
+
+  "Rock": "Rock",
+  "Paper": "Paper",
+  "Scissors": "Scissors"
+}
