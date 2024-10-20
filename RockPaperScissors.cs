@@ -7,6 +7,7 @@ using System.Text.Json.Serialization;
 using Menu;
 using Menu.Enums;
 using System.Text.Json;
+using CounterStrikeSharp.API;
 
 namespace RPS;
 
@@ -228,6 +229,8 @@ public class RockPaperScissors : BasePlugin, IPluginConfig<PluginConfig>
         menu.AddMenuOption(Localizer["Rock"], (player, option) => HandlePlayerSelection(player, opponent, "Rock", bet));
         menu.AddMenuOption(Localizer["Paper"], (player, option) => HandlePlayerSelection(player, opponent, "Paper", bet));
         menu.AddMenuOption(Localizer["Scissors"], (player, option) => HandlePlayerSelection(player, opponent, "Scissors", bet));
+
+        MenuManager.OpenChatMenu(player, menu);
     }
     private void OpenKitsuneMenu(CCSPlayerController player, CCSPlayerController opponent, int bet)
     {
@@ -242,22 +245,26 @@ public class RockPaperScissors : BasePlugin, IPluginConfig<PluginConfig>
             new MenuItem(MenuItemType.Button, new List<MenuValue> {new MenuValue(Localizer["Scissors"])})
         };
 
-        menu.ShowScrollableMenu(player, Localizer["menu<title>"], menuItems, (menuButtons, menu, selectedItem) =>
+        menu.ShowScrollableMenu(player, Localizer["menu<title>"], menuItems, (menuButtons, Menu2, selectedItem) =>
         {
             if (selectedItem == null || selectedItem.Values == null || selectedItem.Values.Count == 0)
                 return;
 
             if (menuButtons == MenuButtons.Exit)
                 return;
+            if (menuButtons == MenuButtons.Select)
+            {
+                string selectedOption = selectedItem.Values[0].Value;
 
-            string selectedOption = selectedItem.Values[0].Value;
+                if (selectedOption == Localizer["Rock"])
+                    HandlePlayerSelection(player, opponent, "Rock", bet);
+                else if (selectedOption == Localizer["Paper"])
+                    HandlePlayerSelection(player, opponent, "Paper", bet);
+                else if (selectedOption == Localizer["Scissors"])
+                    HandlePlayerSelection(player, opponent, "Scissors", bet);
 
-            if (selectedOption == Localizer["Rock"])
-                HandlePlayerSelection(player, opponent, "Rock", bet);
-            else if (selectedOption == Localizer["Paper"])
-                HandlePlayerSelection(player, opponent, "Paper", bet);
-            else if (selectedOption == Localizer["Scissors"])
-                HandlePlayerSelection(player, opponent, "Scissors", bet);
+                menu.PopMenu(player);
+            }
 
         }, false, true);
     }
@@ -285,32 +292,35 @@ public class RockPaperScissors : BasePlugin, IPluginConfig<PluginConfig>
 
         if (player1Choice == player2Choice)
         {
-            resultMessage = Localizer["Tie"];
-            player1.PrintToChat(Localizer["prefix"] + resultMessage);
-            player2.PrintToChat(Localizer["prefix"] + resultMessage);
+            string tieMessage = Localizer["Prefix"] + Localizer["Tie"];
 
+            player1.PrintToChat(tieMessage);
+            player2.PrintToChat(tieMessage);
+
+            // Refund the bet to both players
             StoreApi.GivePlayerCredits(player1, bet);
             StoreApi.GivePlayerCredits(player2, bet);
         }
+
         else
         {
-            bool player1Wins = (player1Choice == "Rock" && player2Choice == "Scissors") ||
-                               (player1Choice == "Scissors" && player2Choice == "Paper") ||
-                               (player1Choice == "Paper" && player2Choice == "Rock");
+            bool player1Wins = (player1Choice == Localizer["Rock"] && player2Choice == Localizer["Scissors"]) ||
+                               (player1Choice == Localizer["Scissors"] && player2Choice == Localizer["Paper"]) ||
+                               (player1Choice == Localizer["Paper"] && player2Choice == Localizer["Rock"]);
 
             if (player1Wins)
             {
-                resultMessage = Localizer["Win", player1.PlayerName, player1Choice, player2.PlayerName, player2Choice, player1.PlayerName];
-                player1.PrintToChat(Localizer["prefix"]+ resultMessage);
-                player2.PrintToChat(Localizer["prefix"]+ resultMessage);
+                resultMessage = Localizer["Prefix"] + Localizer["Win", player1.PlayerName, player1Choice, player2.PlayerName, player2Choice, player1.PlayerName];
+                player1.PrintToChat(resultMessage);
+                player2.PrintToChat(resultMessage);
 
                 StoreApi.GivePlayerCredits(player1, bet * Config.WinnerMultiplier);
             }
             else
             {
-                resultMessage = Localizer["Win", player2.PlayerName, player2Choice, player1.PlayerName, player1Choice, player2.PlayerName];
-                player1.PrintToChat(Localizer["prefix"] + resultMessage);
-                player2.PrintToChat(Localizer["prefix"] + resultMessage);
+                resultMessage = Localizer["Prefix"] + Localizer["Win", player2.PlayerName, player2Choice, player1.PlayerName, player1Choice, player2.PlayerName];
+                player1.PrintToChat(resultMessage);
+                player2.PrintToChat(resultMessage);
 
                 StoreApi.GivePlayerCredits(player2, bet * Config.WinnerMultiplier);
             }

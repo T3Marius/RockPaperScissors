@@ -6,7 +6,7 @@
   "MaxBet": "Maximum duel bet: {red}{0}",
 
   "Cooldown": "Wait {red}{0}{default} seconds before dueling someone else.",
-  "DuelMessage": "You have been dueled by {0} to {orange}RockPaperScissors{default} for {1} credits, use !duelaccept to or !duelrefuse",
+  "DuelMessage": "You have been dueled by {0} to {orange}RockPaperScissors{default} for {1} credits, use {green}!duelaccept {default}or {red}!duelrefuse",
   "DuelSendMessage": "You sent a duel {0} to {orange}RockPaperScissors{default} for {1} credits",
 
   "DuelAcceptMessage": "Your duel have been {green}accepted{default}! Choose between: {orange}Rock {silver}|| {orange}Paper {silver}|| {orange}Scissors",
@@ -16,12 +16,12 @@
   "DuelRefused": "Your duel was {red}refused{default} by {lime}{0}",
   "DuelRefuse": "You refused {0}'s duel",
 
-  "Tie": "Tie! Both players have recieved their credits back.",
-  "Win": "{blue}{0} choose {orange}{1}, {orange}{2} choose {red}{3}. {blue}{4} {green}Won!",
+  "Tie": "{yellow}Tie{default}! Both players have recieved their {green}credits{default} back.",
+  "Win": "{blue}{0}{default} choose {orange}{1}{default}, {orange}{2}{default} choose {red}{3}{default}. {blue}{4} {green}Won!",
 
   "InvalidCredits": "Invalid amount of credits!",
   "ChallangeTimeOut": "Duel request expired. Initiate a new duel if you wish. ",
-  "menu<title>": "",
+  "menu<title>": "Choose:",
 
   "Rock": "Rock",
   "Paper": "Paper",
