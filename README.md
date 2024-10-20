@@ -1,2 +1,27 @@
-# RockPaperScissors
-Rock Paper Scissors plugin for cs2 managed to allow players duel using !duel command.
+# Information
+**Commands:**
+```
+!duel <playername> <credits>
+!duelaccept 
+!duelrefuse
+
+Keep in mind these are editable in config file!
+```
+
+# Config
+```
+{
+  "MinimumDuelBet": 20,
+  "MaximumDuelBet": 500,
+  "DuelCooldown": 10,
+  "MenuType": "centerhtml", // options: kitsune, chat, centerhtml
+  "RequestTime": 20,
+  "WinnerMultiplier": 2,
+  "Commands": {
+    "DuelCommand": [ "duel" ],
+    "AcceptDuelCommand": [ "duelaccept" ],
+    "RefuseDuelCommand": [ "duelrefuse" ]
+  },
+  "ConfigVersion": 1
+}
+```
