@@ -1,3 +1,8 @@
+# Require:
+https://github.com/roflmuffin/CounterStrikeSharp
+https://github.com/roflmuffin/CounterStrikeSharp
+
+
 # Information
 **Commands:**
 ```
